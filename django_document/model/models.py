@@ -12,4 +12,20 @@ class Person(models.Model):
         max_length=1, choices=SHIRT_SIZES)
 
 
-# Database makemigrations, migrate
+class Fruit(models.Model):
+    name = models.CharField(
+        max_length=100,
+        primary_key=True
+    )
+
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class Car(models.Model):
+    manufacturer = models.ForeignKey(
+        Manufacturer,
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(max_length=50, blank=True)

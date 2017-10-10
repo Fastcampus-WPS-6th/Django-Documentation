@@ -19,6 +19,17 @@ class Fruit(models.Model):
     )
 
 
+class Car(models.Model):
+    manufacturer = models.ForeignKey(
+        'Manufacturer',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return f'{self.manufacturer.name} - {self.name}'
+
+
 class Manufacturer(models.Model):
     name = models.CharField(max_length=50)
 
@@ -26,12 +37,14 @@ class Manufacturer(models.Model):
         return self.name
 
 
-class Car(models.Model):
-    manufacturer = models.ForeignKey(
-        Manufacturer,
-        on_delete=models.CASCADE
+class User(models.Model):
+    name = models.CharField(max_length=30)
+    teacher = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
     )
-    name = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return f'{self.manufacturer.name} - {self.name}'
+        return self.name

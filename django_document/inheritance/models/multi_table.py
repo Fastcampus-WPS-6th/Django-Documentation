@@ -7,7 +7,7 @@ __all__ = (
 
 
 class Place(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default='ABC')
     address = models.CharField(max_length=80)
 
     def __str__(self):
@@ -20,3 +20,11 @@ class Restaurant(Place):
 
     def __str__(self):
         return f'{self.name} Restaurant'
+
+
+class Supplier(Place):
+    customers = models.ManyToManyField(
+        Place,
+        related_name='providers',
+        related_query_name='provider'
+    )

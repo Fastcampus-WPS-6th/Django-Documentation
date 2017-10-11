@@ -34,10 +34,9 @@ class Membership(models.Model):
         related_name='membership_set'
     )
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    recommender = models.ForeignKey(
+    recommenders = models.ManyToManyField(
         Idol,
-        null=True,
-        on_delete=models.SET_NULL,
+        blank=True,
         related_name='recommend_membership_set',
     )
     joined_date = models.DateField()

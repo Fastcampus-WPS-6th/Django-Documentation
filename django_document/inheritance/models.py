@@ -1,0 +1,32 @@
+from django.db import models
+
+
+# 아래 내용을 DB에 적용, admin에 추가
+
+class School(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class CommonInfo(models.Model):
+    school = models.ForeignKey(
+        School,
+        blank=True,
+        null=True,
+        related_name='%(app_label)s_%(class)s_set',
+    )
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+
+    class Meta:
+        abstract = True
+
+
+class Student(CommonInfo):
+    home_group = models.CharField(max_length=5)
+
+
+class Teacher(CommonInfo):
+    subject = models.CharField(max_length=30)

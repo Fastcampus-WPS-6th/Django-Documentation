@@ -1,7 +1,11 @@
 from django.db import models
 
+__all__ = (
+    'School',
+    'Student',
+    'Teacher',
+)
 
-# 아래 내용을 DB에 적용, admin에 추가
 
 class School(models.Model):
     name = models.CharField(max_length=100)

@@ -2,7 +2,15 @@ from django.db import models
 
 __all__ = (
     'Champion',
+    'Supporter',
 )
+
+
+class ChampionInfo(models.Model):
+    nickname = models.CharField(max_length=30)
+
+    class Meta:
+        abstract = True
 
 
 class Champion(models.Model):

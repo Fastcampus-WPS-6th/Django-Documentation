@@ -19,7 +19,7 @@ class CommonInfo(models.Model):
         School,
         blank=True,
         null=True,
-        related_name='%(app_label)s_%(class)s_set',
+        # related_name='%(app_label)s_%(class)s_set',
     )
     name = models.CharField(max_length=100)
     age = models.PositiveIntegerField()
